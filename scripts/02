@@ -1,0 +1,5 @@
+#!/bin/bash
+
+0 4 * * 7 apt-get update && apt-get upgrade | tee -a /var/log/update_script.log
+
+service cron restart

@@ -1,0 +1,12 @@
+#!/bin/bash
+ROOT="alexandre.barbosa.candidat@gmail.com"
+
+if [ ! -e /var/base.txt ]; then
+	md5sum /etc/crontab | tee /var/base.txt
+fi
+
+diff /var/base.txt /var/verif.txt >> /var/diff.txt
+
+if [ -s /var/diff.txt ]; then
+    mail -s "Alerte surveillance modification de fichier" $ROOT
+fi
